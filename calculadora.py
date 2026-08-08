@@ -1,4 +1,4 @@
-def calcular_total(itens, desconto_percentual=0):
+def calcular_total(itens, desconto_percentual=0, cupom=""):
     """
     Calcula o total de uma compra.
 
@@ -8,11 +8,26 @@ def calcular_total(itens, desconto_percentual=0):
     if not 0 <= desconto_percentual <= 100:
         raise ValueError("O desconto precisa estar entre 0 e 100.")
 
+    cupons = {
+        "vale10": 10,
+        "vale5": 5
+    }
+
+    if cupom == "":
+        desconto_cupom = 0
+    elif cupom in cupons:
+        desconto_cupom = cupons[cupom]
+    else:
+        raise ValueError("Acerta esse cupom malandrão")
+
+    if desconto_percentual + desconto_cupom > 100:
+        raise ValueError("Malandrão não da para ser maior que 100%")
+
     subtotal = sum(
         preco_unitario * quantidade
         for preco_unitario, quantidade in itens
     )
 
-    total = subtotal - desconto_percentual
-    #teste
+    total = subtotal - (subtotal * ((desconto_percentual + desconto_cupom) / 100))
+
     return round(total, 2)
