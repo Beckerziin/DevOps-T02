@@ -29,10 +29,10 @@ def test_cupom_vazio():
 
 def test_cupom_invalido():
     itens = [(100.0, 1)]
-    with pytest.raises(ValueError, match="Acerta esse cupom malandrão"):
+    with pytest.raises(ValueError, match="Cupom inválido."):
         calcular_total(itens, cupom="cupom_invalido")
 
 def test_desconto_excede_cem_por_cento():
     itens = [(100.0, 1)]
-    with pytest.raises(ValueError, match="Malandrão não da para ser maior que 100%"):
+    with pytest.raises(ValueError, match="Desconto total maior que 100%"):
         calcular_total(itens, desconto_percentual=95, cupom="vale10")
