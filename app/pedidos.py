@@ -8,7 +8,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from decimal import Decimal, ROUND_HALF_UP
-#from decimal import ROUND_HALF_UP, Decimal
 
 CENTAVOS = Decimal("0.01")
 CUPONS_VALIDOS: dict[str, Decimal] = {
